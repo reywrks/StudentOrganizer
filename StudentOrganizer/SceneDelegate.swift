@@ -32,5 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
+        // Save any unsaved Core Data changes so nothing is lost if iOS closes the app.
+        CoreDataStack.shared.save()
     }
 }

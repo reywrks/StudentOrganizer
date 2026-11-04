@@ -1,0 +1,132 @@
+//
+//  SubjectsViewController.swift
+//  StudentOrganizer
+//
+//  Screen 1: the list of subjects. Subjects are stored with Core Data,
+//  so they are still here after the app is closed and opened again.
+//
+
+import UIKit
+import CoreData
+
+class SubjectsViewController: UITableViewController {
+
+    // MARK: - Properties
+    private var subjects: [Subject] = []
+    private let context = CoreDataStack.shared.context
+
+    // MARK: - View life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "My Subjects"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+
+    // Runs every time the screen appears, so the list is always up to date
+    // (for example, after returning from the Tasks screen).
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadSubjects()
+    }
+
+    // MARK: - Core Data
+    private func loadSubjects() {
+        let request: NSFetchRequest<Subject> = Subject.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        do {
+            subjects = try context.fetch(request)
+        } catch {
+            print("Could not fetch subjects: \(error)")
+            subjects = []
+        }
+        updateBackground()
+        tableView.reloadData()
+    }
+
+    /// Gradient background behind the list; it also carries the
+    /// empty-state message when there are no subjects yet.
+    private func updateBackground() {
+        tableView.backgroundView = GlassBackgroundView(
+            message: subjects.isEmpty ? "No subjects yet.\nTap + to add one." : nil)
+    }
+
+    // MARK: - Actions
+    @IBAction func addSubjectTapped(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Subject",
+                                      message: "Enter the name of the subject.",
+                                      preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "e.g., Mobile Application Development 2"
+            textField.autocapitalizationType = .words
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [weak self, weak alert] _ in
+            // guard: stop quietly if the name is empty (never force-unwrap user input)
+            guard let self = self,
+                  let name = alert?.textFields?.first?.text?
+                      .trimmingCharacters(in: .whitespacesAndNewlines),
+                  !name.isEmpty else { return }
+
+            let subject = Subject(context: self.context)   // create a new row
+            subject.name = name
+            subject.createdAt = Date()
+            CoreDataStack.shared.save()                    // write it to the database
+            self.loadSubjects()
+        }
+        alert.addAction(saveAction)
+        alert.preferredAction = saveAction   // Return key on the keyboard = Save
+        present(alert, animated: true)
+    }
+
+    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+        return subjects.count
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubjectCell",
+                                                 for: indexPath)
+        let subject = subjects[indexPath.row]
+
+        // subject.tasks is an NSSet of TaskItem objects (the relationship we made).
+        let allTasks = subject.tasks as? Set<TaskItem> ?? []
+        let pendingCount = allTasks.filter { !$0.isDone }.count
+
+        var content = cell.defaultContentConfiguration()
+        content.text = subject.name ?? "Untitled subject"
+        content.secondaryText = pendingText(for: pendingCount)
+        content.textProperties.font = .preferredFont(forTextStyle: .headline)
+        content.secondaryTextProperties.color = .secondaryLabel
+        content.image = UIImage(systemName: "book.closed.fill")
+        content.imageProperties.tintColor = .tintColor   // the app's accent color
+        cell.contentConfiguration = content
+        cell.applyGlassBackground()
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+
+    /// "All caught up", "1 pending task", "3 pending tasks".
+    private func pendingText(for count: Int) -> String {
+        switch count {
+        case 0:  return "All caught up"
+        case 1:  return "1 pending task"
+        default: return "\(count) pending tasks"
+        }
+    }
+
+    // MARK: - Table view delegate
+    // Swipe left on a row to delete it.
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        context.delete(subjects[indexPath.row])   // cascade: tasks and notes go too
+        CoreDataStack.shared.save()
+        subjects.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        updateBackground()
+    }
+}
