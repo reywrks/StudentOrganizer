@@ -133,6 +133,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="TFm-Vc-f01" kind="show" identifier="ShowTaskFormSegue" id="Seg-TFm-s01"/>
+                        <segue destination="Nts-Vc-n01" kind="show" identifier="ShowNotesSegue" id="Seg-Nts-s01"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tsk-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -238,6 +239,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFm-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1668" y="-34"/>
+        </scene>
+        <!--Notes-->
+        <scene sceneID="Nts-Sc-n01">
+            <objects>
+                <viewController id="Nts-Vc-n01" customClass="NotesViewController" customModule="StudentOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nts-Vw-v01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nts-Cv-c01">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="Nts-Fl-f01">
+                                    <size key="itemSize" width="178" height="218"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="12" minY="12" maxX="12" maxY="12"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCell" id="Nts-Cl-c01" customClass="NoteCell" customModule="StudentOrganizer" customModuleProvider="target">
+                                        <rect key="frame" x="12" y="12" width="178" height="218"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Nts-Cc-v01">
+                                            <rect key="frame" x="0.0" y="0.0" width="178" height="218"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nts-Im-i01">
+                                                    <rect key="frame" x="0.0" y="0.0" width="178" height="178"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Nts-Im-i01" secondAttribute="height" multiplier="1:1" id="Nts-Cn-a01"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nts-Lb-l01">
+                                                    <rect key="frame" x="8" y="182" width="162" height="32"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Nts-Im-i01" firstAttribute="top" secondItem="Nts-Cc-v01" secondAttribute="top" id="Nts-Cn-c01"/>
+                                                <constraint firstItem="Nts-Im-i01" firstAttribute="leading" secondItem="Nts-Cc-v01" secondAttribute="leading" id="Nts-Cn-c02"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nts-Im-i01" secondAttribute="trailing" id="Nts-Cn-c03"/>
+                                                <constraint firstItem="Nts-Lb-l01" firstAttribute="top" secondItem="Nts-Im-i01" secondAttribute="bottom" constant="4" id="Nts-Cn-c04"/>
+                                                <constraint firstItem="Nts-Lb-l01" firstAttribute="leading" secondItem="Nts-Cc-v01" secondAttribute="leading" constant="8" id="Nts-Cn-c05"/>
+                                                <constraint firstAttribute="trailing" secondItem="Nts-Lb-l01" secondAttribute="trailing" constant="8" id="Nts-Cn-c06"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nts-Lb-l01" secondAttribute="bottom" constant="4" id="Nts-Cn-c07"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="noteLabel" destination="Nts-Lb-l01" id="Nts-Ou-o02"/>
+                                            <outlet property="photoImageView" destination="Nts-Im-i01" id="Nts-Ou-o03"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nts-Sa-g01"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nts-Cv-c01" firstAttribute="top" secondItem="Nts-Sa-g01" secondAttribute="top" id="Nts-Cn-v01"/>
+                            <constraint firstItem="Nts-Cv-c01" firstAttribute="leading" secondItem="Nts-Sa-g01" secondAttribute="leading" id="Nts-Cn-v02"/>
+                            <constraint firstItem="Nts-Sa-g01" firstAttribute="trailing" secondItem="Nts-Cv-c01" secondAttribute="trailing" id="Nts-Cn-v03"/>
+                            <constraint firstItem="Nts-Sa-g01" firstAttribute="bottom" secondItem="Nts-Cv-c01" secondAttribute="bottom" id="Nts-Cn-v04"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notes" largeTitleDisplayMode="never" id="Nts-Ni-n01">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Nts-Ad-b01">
+                            <connections>
+                                <action selector="addNoteTapped:" destination="Nts-Vc-n01" id="Nts-Ac-a01"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="Nts-Cv-c01" id="Nts-Ou-o01"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nts-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="800"/>
         </scene>
     </scenes>
     <resources>
