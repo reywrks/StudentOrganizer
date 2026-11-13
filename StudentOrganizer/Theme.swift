@@ -77,3 +77,14 @@ extension UITableViewCell {
         backgroundConfiguration = background
     }
 }
+
+extension UIViewController {
+    /// Puts the gradient behind a plain (non-list) screen such as a form.
+    /// It is inserted at index 0 so it sits behind every other control.
+    func addGlassBackground() {
+        let background = GlassBackgroundView(message: nil)
+        background.frame = view.bounds
+        background.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(background, at: 0)
+    }
+}

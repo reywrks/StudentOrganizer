@@ -70,13 +70,189 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Tsk-Vc-t01" kind="show" identifier="ShowTasksSegue" id="Seg-Tsk-s01"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sub-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="-34"/>
         </scene>
+        <!--Tasks-->
+        <scene sceneID="Tsk-Sc-t01">
+            <objects>
+                <tableViewController id="Tsk-Vc-t01" customClass="TasksViewController" customModule="StudentOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Tsk-Tv-t01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" textLabel="Tsk-Lb-t01" detailTextLabel="Tsk-Lb-d01" style="IBUITableViewCellStyleSubtitle" id="Tsk-Ce-c01">
+                                <rect key="frame" x="20" y="55.333332061767578" width="353" height="55.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tsk-Ce-c01" id="Tsk-Cv-v01">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="55.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tsk-Lb-t01">
+                                            <rect key="frame" x="20" y="10" width="33" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tsk-Lb-d01">
+                                            <rect key="frame" x="20" y="31.333333333333336" width="44" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Tsk-Vc-t01" id="Tsk-Ds-o01"/>
+                            <outlet property="delegate" destination="Tsk-Vc-t01" id="Tsk-Dl-o01"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tasks" id="Tsk-Ni-n01">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="Tsk-Ad-b01">
+                                <connections>
+                                    <action selector="addTaskTapped:" destination="Tsk-Vc-t01" id="Tsk-Ac-a01"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Notes" id="Tsk-Nb-b01">
+                                <connections>
+                                    <action selector="notesTapped:" destination="Tsk-Vc-t01" id="Tsk-Ac-a02"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="TFm-Vc-f01" kind="show" identifier="ShowTaskFormSegue" id="Seg-TFm-s01"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tsk-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="-34"/>
+        </scene>
+        <!--Task Form-->
+        <scene sceneID="TFm-Sc-f01">
+            <objects>
+                <viewController id="TFm-Vc-f01" customClass="TaskFormViewController" customModule="StudentOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TFm-Vw-v01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-St-s01">
+                                <rect key="frame" x="20" y="123" width="353" height="376"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Lb-l01">
+                                        <rect key="frame" x="0.0" y="0" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Tf-t01">
+                                        <rect key="frame" x="0.0" y="32" width="353" height="34"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Lb-l02">
+                                        <rect key="frame" x="0.0" y="78" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Tf-t02">
+                                        <rect key="frame" x="0.0" y="110" width="353" height="34"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Lb-l03">
+                                        <rect key="frame" x="0.0" y="156" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" datePickerMode="dateAndTime" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Dp-d01">
+                                        <rect key="frame" x="0.0" y="188" width="353" height="34"/>
+                                    </datePicker>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Lb-l04">
+                                        <rect key="frame" x="0.0" y="234" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Sg-s01">
+                                        <rect key="frame" x="0.0" y="266" width="353" height="32"/>
+                                        <segments>
+                                            <segment title="Low"/>
+                                            <segment title="Medium"/>
+                                            <segment title="High"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-St-s02">
+                                        <rect key="frame" x="0.0" y="310" width="353" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Lb-l05">
+                                                <rect key="frame" x="0.0" y="5.5" width="296" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TFm-Sw-s01">
+                                                <rect key="frame" x="304" y="0.0" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TFm-Sa-g01"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TFm-St-s01" firstAttribute="top" secondItem="TFm-Sa-g01" secondAttribute="top" constant="20" id="TFm-Cn-c01"/>
+                            <constraint firstItem="TFm-St-s01" firstAttribute="leading" secondItem="TFm-Sa-g01" secondAttribute="leading" constant="20" id="TFm-Cn-c02"/>
+                            <constraint firstItem="TFm-Sa-g01" firstAttribute="trailing" secondItem="TFm-St-s01" secondAttribute="trailing" constant="20" id="TFm-Cn-c03"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Task" largeTitleDisplayMode="never" id="TFm-Ni-n01">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="TFm-Sv-b01">
+                            <connections>
+                                <action selector="saveTapped:" destination="TFm-Vc-f01" id="TFm-Ac-a01"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="completedSwitch" destination="TFm-Sw-s01" id="TFm-Ou-o01"/>
+                        <outlet property="detailsTextField" destination="TFm-Tf-t02" id="TFm-Ou-o02"/>
+                        <outlet property="dueDatePicker" destination="TFm-Dp-d01" id="TFm-Ou-o03"/>
+                        <outlet property="prioritySegmentedControl" destination="TFm-Sg-s01" id="TFm-Ou-o04"/>
+                        <outlet property="titleTextField" destination="TFm-Tf-t01" id="TFm-Ou-o05"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TFm-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1668" y="-34"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
