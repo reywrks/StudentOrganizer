@@ -314,14 +314,90 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Nts-Cv-c01" id="Nts-Ou-o01"/>
+                        <segue destination="NFm-Vc-f01" kind="show" identifier="ShowNoteFormSegue" id="Seg-NFm-s01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nts-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1668" y="800"/>
         </scene>
+        <!--Note Form-->
+        <scene sceneID="NFm-Sc-f01">
+            <objects>
+                <viewController id="NFm-Vc-f01" customClass="NoteFormViewController" customModule="StudentOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NFm-Vw-v01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-St-s01">
+                                <rect key="frame" x="20" y="123" width="353" height="464"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-Lb-l01">
+                                        <rect key="frame" x="0.0" y="0" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-Tv-t01">
+                                        <rect key="frame" x="0.0" y="32" width="353" height="150"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="NFm-Cn-h01"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-Lb-l02">
+                                        <rect key="frame" x="0.0" y="194" width="353" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubheadline"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-Im-i01">
+                                        <rect key="frame" x="0.0" y="226" width="353" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="NFm-Cn-h02"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFm-Bt-b01">
+                                        <rect key="frame" x="0.0" y="438" width="353" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="photo.on.rectangle" catalog="system" title="Choose Photo" imagePadding="8"/>
+                                        <connections>
+                                            <action selector="choosePhotoTapped:" destination="NFm-Vc-f01" eventType="touchUpInside" id="NFm-Ac-a02"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NFm-Sa-g01"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NFm-St-s01" firstAttribute="top" secondItem="NFm-Sa-g01" secondAttribute="top" constant="20" id="NFm-Cn-c01"/>
+                            <constraint firstItem="NFm-St-s01" firstAttribute="leading" secondItem="NFm-Sa-g01" secondAttribute="leading" constant="20" id="NFm-Cn-c02"/>
+                            <constraint firstItem="NFm-Sa-g01" firstAttribute="trailing" secondItem="NFm-St-s01" secondAttribute="trailing" constant="20" id="NFm-Cn-c03"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Note" largeTitleDisplayMode="never" id="NFm-Ni-n01">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NFm-Sv-b01">
+                            <connections>
+                                <action selector="saveTapped:" destination="NFm-Vc-f01" id="NFm-Ac-a01"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="noteTextView" destination="NFm-Tv-t01" id="NFm-Ou-o01"/>
+                        <outlet property="photoImageView" destination="NFm-Im-i01" id="NFm-Ou-o02"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NFm-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2436" y="800"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
