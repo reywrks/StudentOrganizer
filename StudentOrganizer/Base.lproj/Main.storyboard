@@ -315,6 +315,7 @@
                     <connections>
                         <outlet property="collectionView" destination="Nts-Cv-c01" id="Nts-Ou-o01"/>
                         <segue destination="NFm-Vc-f01" kind="show" identifier="ShowNoteFormSegue" id="Seg-NFm-s01"/>
+                        <segue destination="NDt-Vc-d01" kind="show" identifier="ShowNoteDetailSegue" id="Seg-NDt-s01"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nts-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -395,6 +396,66 @@
             </objects>
             <point key="canvasLocation" x="2436" y="800"/>
         </scene>
+        <!--Note Detail-->
+        <scene sceneID="NDt-Sc-d01">
+            <objects>
+                <viewController id="NDt-Vc-d01" customClass="NoteDetailViewController" customModule="StudentOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NDt-Vw-v01">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-St-s01">
+                                <rect key="frame" x="20" y="123" width="353" height="400"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-Im-i01">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="NDt-Cn-h01"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-Lb-d01">
+                                        <rect key="frame" x="0.0" y="312" width="353" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-Lb-n01">
+                                        <rect key="frame" x="0.0" y="340" width="353" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDt-Bt-b01">
+                                        <rect key="frame" x="0.0" y="372" width="353" height="34"/>
+                                        <state key="normal" title="Delete Note">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteTapped:" destination="NDt-Vc-d01" eventType="touchUpInside" id="NDt-Ac-a01"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NDt-Sa-g01"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NDt-St-s01" firstAttribute="top" secondItem="NDt-Sa-g01" secondAttribute="top" constant="20" id="NDt-Cn-c01"/>
+                            <constraint firstItem="NDt-St-s01" firstAttribute="leading" secondItem="NDt-Sa-g01" secondAttribute="leading" constant="20" id="NDt-Cn-c02"/>
+                            <constraint firstItem="NDt-Sa-g01" firstAttribute="trailing" secondItem="NDt-St-s01" secondAttribute="trailing" constant="20" id="NDt-Cn-c03"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Note" largeTitleDisplayMode="never" id="NDt-Ni-n01"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="NDt-Lb-d01" id="NDt-Ou-o01"/>
+                        <outlet property="noteLabel" destination="NDt-Lb-n01" id="NDt-Ou-o02"/>
+                        <outlet property="photoImageView" destination="NDt-Im-i01" id="NDt-Ou-o03"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDt-Fr-p01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2436" y="1600"/>
+        </scene>
     </scenes>
     <resources>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
@@ -409,6 +470,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
