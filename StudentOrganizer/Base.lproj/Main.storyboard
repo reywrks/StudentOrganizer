@@ -302,7 +302,7 @@
                             <constraint firstItem="Nts-Cv-c01" firstAttribute="top" secondItem="Nts-Sa-g01" secondAttribute="top" id="Nts-Cn-v01"/>
                             <constraint firstItem="Nts-Cv-c01" firstAttribute="leading" secondItem="Nts-Sa-g01" secondAttribute="leading" id="Nts-Cn-v02"/>
                             <constraint firstItem="Nts-Sa-g01" firstAttribute="trailing" secondItem="Nts-Cv-c01" secondAttribute="trailing" id="Nts-Cn-v03"/>
-                            <constraint firstItem="Nts-Sa-g01" firstAttribute="bottom" secondItem="Nts-Cv-c01" secondAttribute="bottom" id="Nts-Cn-v04"/>
+                            <constraint firstAttribute="bottom" secondItem="Nts-Cv-c01" secondAttribute="bottom" id="Nts-Cn-v04"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notes" largeTitleDisplayMode="never" id="Nts-Ni-n01">

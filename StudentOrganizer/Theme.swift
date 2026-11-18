@@ -2,9 +2,8 @@
 //  Theme.swift
 //  StudentOrganizer
 //
-//  The app's own visual style (allowed by the spec: "free to choose your own
-//  accent colors and SF Symbols"). Lists sit on a soft accent-colored gradient,
-//  and each row is a frosted-glass card that blurs that gradient behind it.
+//  Our own visual style: lists sit on a soft gradient made from the accent
+//  color, and each row is a frosted-glass card that blurs that gradient.
 //
 
 import UIKit

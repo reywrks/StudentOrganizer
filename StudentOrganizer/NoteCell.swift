@@ -21,6 +21,8 @@ class NoteCell: UICollectionViewCell {
         backgroundColor = .clear
         backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterial))
         photoImageView.clipsToBounds = true
+        // Bigger icon for text-only notes, so the card does not look empty.
+        photoImageView.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 34)
     }
 
     /// Fills the cell with one Note from the database.
@@ -34,7 +36,7 @@ class NoteCell: UICollectionViewCell {
             // No photo: show a text icon instead.
             photoImageView.image = UIImage(systemName: "text.alignleft")
             photoImageView.contentMode = .center
-            photoImageView.tintColor = .systemGray3
+            photoImageView.tintColor = .secondaryLabel   // readable on the glass card
         }
     }
 

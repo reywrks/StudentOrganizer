@@ -35,7 +35,7 @@ class NoteDetailViewController: UIViewController {
         } else {
             photoImageView.image = UIImage(systemName: "text.alignleft")
             photoImageView.contentMode = .center
-            photoImageView.tintColor = .systemGray3
+            photoImageView.tintColor = .secondaryLabel   // readable on the glass card
         }
     }
 

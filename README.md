@@ -25,5 +25,5 @@ Student Organizer is a storyboard-based UIKit app (Swift) for keeping track of s
 - [x] Part D — Notes grid (UICollectionView)
 - [x] Part E — Note Form and Photo Picker
 - [x] Part F — Note Detail and Delete
-- [ ] Part G — Testing and cleanup
+- [x] Part G — Testing and cleanup
 - [ ] Part H — Run on a physical iPhone
